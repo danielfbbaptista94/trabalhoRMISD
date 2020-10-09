@@ -7,7 +7,6 @@ public class Pessoa {
 	private String cpf;
 	
 	
-	
 	public Pessoa() {
 		super();
 	}

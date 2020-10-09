@@ -1,17 +1,16 @@
 package dao;
 
 import java.rmi.*;
+import java.sql.SQLException;
 
 import domain.Pessoa;
 
 public interface IPessoaDAO extends Remote {
 	
-	public Pessoa criarPessoa(Pessoa pessoa);
+	public Pessoa criarPessoa(Pessoa pessoa) throws SQLException;
 	
-	public Pessoa buscarPessoaNome(String nome);
+	public String buscarPessoaCPF(String cpf) throws SQLException;
 	
-	public Pessoa buscarPessoaCPF(String cpf);
-	
-	public Pessoa deletarPessoa(Pessoa pessoa);
+	public boolean deletarPessoa(String cpf) throws SQLException;
 
 }
