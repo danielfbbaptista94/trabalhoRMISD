@@ -11,15 +11,16 @@ import java.sql.SQLException;
 
 import domain.Pessoa;
 
-public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO, Serializable {
+
+public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO {
 	
 	private static final String SALVAR_PESSOA = "INSERT INTO pessoas(nome, cpf) VALUES (?,?)";
     private static final String SELECIONAR_PESSOABYCPF = "SELECT nome,cpf FROM pessoas WHERE cpf = ?";
     private static final String DELETE_PESSOA = "DELETE FROM pessoas WHERE cpf = ?";
 	
-	private static final String URI = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String USER = "postgres";
-    private static final String PWD = "123";
+	private static final String URI = "jdbc:mysql://localhost:3308/pessoa";
+    private static final String USER = "root";
+    private static final String PWD = "1234";
     
     private Connection conn;
     
@@ -33,7 +34,7 @@ public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO, Serial
             return this.conn;
         }
 
-        DriverManager.registerDriver(new );
+        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         this.conn = DriverManager.getConnection(URI, USER, PWD);
 
         return this.conn;

@@ -12,7 +12,7 @@ public class Server {
 	
 	public static void main(String args[]) {
 		try {
-			IPessoaDAO pessoaDAO = new 
+			IPessoaDAO pessoaDAO = new PessoaDAO();
 			Registry registry = LocateRegistry.createRegistry(5000);
 			registry.bind("pessoasql", pessoaDAO);
 			System.out.println("Conectado!");
