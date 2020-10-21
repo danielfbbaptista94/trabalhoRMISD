@@ -1,0 +1,15 @@
+
+
+
+1 - Criar database "pessoa" -> POSTGRESQL
+2 - Criar table "pessoas"
+	CREATE TABLE public.pessoas (
+	    nome text COLLATE pg_catalog."default",
+	    cpf text COLLATE pg_catalog."default"
+	)
+
+3 - Executar arquivo Server.java
+
+4 - Executar arquivo Client.java
+
+5 - Ao escolher a opção 1 e digitar pela 1x é necessario dar o "Enter" para poder digitar o segundo parâmetro
