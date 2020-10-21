@@ -17,10 +17,11 @@ public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO, Serial
 	
 	private static final String SALVAR_PESSOA = "INSERT INTO pessoas(nome, cpf) VALUES (?,?)";
     private static final String SELECIONAR_PESSOABYCPF = "SELECT nome,cpf FROM pessoas WHERE cpf = ?";
-    private static final String DELETE_PESSOA = "DELETE FROM pessoas WHERE cpf = ?";
+    private static final String DELETE_PESSOA = "DELETE FROM public.pessoas WHERE cpf = ?";
 	
-	private static final String URI = "jdbc:mysql://localhost:3308/pessoa?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String USER = "root";
+//	private static final String URI = "jdbc:mysql://localhost:3308/pessoa?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static final String URI = "jdbc:postgresql://localhost:5432/pessoa";
+    private static final String USER = "postgres";
     private static final String PWD = "1234";
     
     private Connection conn;
@@ -35,7 +36,7 @@ public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO, Serial
             return this.conn;
         }
 
-        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+        DriverManager.registerDriver(new org.postgresql.Driver());
         this.conn = DriverManager.getConnection(URI, USER, PWD);
 
         return this.conn;
@@ -65,7 +66,7 @@ public class PessoaDAO extends UnicastRemoteObject implements IPessoaDAO, Serial
             Pessoa pessoa = new Pessoa(rSet.getString("nome"), rSet.getString("cpf"));
             rSet.close();
             pStmt.close();
-            this.conn.close();
+            
             return pessoa.toString();
         }
         return "Pessoa NÃO CADASTRADO NA BASE!!";
